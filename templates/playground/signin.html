@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy Landing Page</title>
+    <header>
+        <h1>Dummy Landing Page</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/">About Us</a>
+            <a href="/signin">Login</a>
+            <a href="/">Register User</a>
+        </nav>
+    </header>
+
+    <style>
+        /* Basic styles for the header */
+        footer {
+            position: absolute;
+            top: 597px;
+            left: 0px;
+            width: 1519px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        form {
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        header {
+            padding-bottom: 15px;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 1513px !important;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        #popup {
+            position: absolute;
+            top: 150px;
+            left: 1px;
+            background-color: lightgrey;
+            width: 300px;
+            height: 150px;
+            border: 10px solid black;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 10px;
+
+        }
+
+        #closebtn {
+            position: absolute;
+            left: 130px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show fancy-box" role="alert" id="popup">
+        <h4 class="alert-heading">Yayy!</h4>
+        <p>{{ message }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert(this)"
+            id="closebtn">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <script>
+        function closeAlert(button) {
+            var alertElement = button.parentElement;
+            alertElement.remove();
+        }
+    </script>
+
+
+    <h2>Login in to your account</h2>
+    <form method="post" action="/signin"
+        style="border: 1px solid #ccc;  background-color: #f7f7f7; width: 700px; height: 200px; position: absolute; top: 200px; left: 400px; font-family: Arial, sans-serif;">
+        {% csrf_token %}
+        <h4 style="margin-bottom: 15px;">Enter Valid credentials</h4>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username"
+            style="width: 80%; padding: 8px; margin-bottom: 15px;" Required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password"
+            style="width: 80%; padding: 8px; margin-bottom: 15px;" Required>
+        <br>
+        <button type="submit"
+            style="padding: 10px 20px; background-color: #6C757D; color: white; border: none; cursor: pointer; margin-left: 10px;">Log
+            In</button>
+    </form>
+    <footer>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/">About Us</a>
+        </nav>
+        <p>&copy; 2024 Dummy Landing Page. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

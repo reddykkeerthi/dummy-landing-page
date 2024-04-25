@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy Landing Page</title>
+    <style>
+        /* Basic styles for the header */
+        footer {
+            position: absolute;
+            top: 800px;
+            left: 0px;
+            width: 1519px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        form {
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        header {
+            padding-bottom: 15px;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 1513px !important;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        #welcome {
+            position: absolute;
+            top: 135px;
+            left: 503px;
+        }
+
+        #popup {
+            position: absolute;
+            top: 150px;
+            left: 1px;
+            background-color: lightgrey;
+            width: 300px;
+            height: 120px;
+            border: 10px solid black;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 10px;
+
+        }
+
+        #closebtn {
+            position: absolute;
+            left: 130px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Dummy Landing Page</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/">About Us</a>
+            <a href="/signin">Login</a>
+            <a href="/">Register User</a>
+        </nav>
+    </header>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show fancy-box" role="alert" id="popup">
+        <h4 class="alert-heading">Uh, Oh!</h4>
+        <p>{{ message }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeAlert(this)"
+            id="closebtn">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <script>
+        function closeAlert(button) {
+            var alertElement = button.parentElement;
+            alertElement.remove();
+        }
+    </script>
+
+    <h2 id="welcome">WELCOME, PLEASE REGISTER YOURSELF!</h2>
+    <form action="" method="post"
+        style="border: 1px solid #ccc;  background-color: #f7f7f7; width: 700px; height: 580px; position: absolute; top: 200px; left: 400px; font-family: Arial, sans-serif;">
+        {% csrf_token %}
+        <h4 style="margin-bottom: 15px;">USER DATA</h4>
+
+        <label for="username" style="display: block; margin-bottom: 10px;">Username</label>
+        <input type="text" id="username" name="username"
+            placeholder="Create a username with minimum 4 and maximum 32 characters"
+            style="width: 60%; padding: 8px; margin-bottom: 15px;" Required>
+
+        <label for="name" style="display: block; margin-bottom: 10px;">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name"
+            style="width: 60%; padding: 8px; margin-bottom: 15px;" Required>
+
+        <label for="email" style="display: block; margin-bottom: 10px;">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email"
+            style="width: 60%; padding: 8px; margin-bottom: 15px;" Required>
+
+        <label for="password" style="display: block; margin-bottom: 10px;">Password</label>
+        <input type="password" id="password" name="password"
+            placeholder="Set a 8 character alphanumeric password with a special character."
+            style="width: 60%; padding: 8px; margin-bottom: 15px;" Required>
+
+        <label style="display: block; margin-bottom: 10px;">Gender</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male" style="margin-right: 10px;">MALE</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">FEMALE</label>
+        <br><br>
+
+        <label for="skills" style="display: block; margin-bottom: 10px;">Skills</label>
+        <select id="skills" name="skills" style="width: 60%; padding: 8px; margin-bottom: 15px;">
+            <option disabled selected value> -- Choose a Skill -- </option>
+            <option value="javaScript">JavaScript</option>
+            <option value="react">React</option>
+            <option value="APIs">APIs</option>
+            <option value="backend">Backend</option>
+        </select>
+
+        <br>
+        <input type="submit" value="Submit"
+            style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer;">
+        <input type="reset" value="Reset"
+            style="padding: 10px 20px; background-color: #6C757D; color: white; border: none; cursor: pointer; margin-left: 10px;">
+
+    </form>
+
+    <footer>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/">About Us</a>
+        </nav>
+        <p>&copy; 2024 Dummy Landing Page. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
