@@ -1,3 +1,5 @@
+#DUMMY LANDING PAGE
+
 This is a working demo of a basic landing page with basic user functionality. 
 Registration page - ![](Screenshot(492).png)
 
